@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inicio</title>
+    <link href='@Url.Content("~")Styles/EstudioLima.css' rel="stylesheet" />
+    <link href='@Url.Content("~")Styles/controles.css' rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div id="grillaPostulante"></div>
+    </div>
+    <input id="hdfRaiz" type="hidden" value='@Url.Content("~")' />
+    <input id="hdfToken" type="hidden" value="@ViewBag.token" />
+    <script src='@Url.Content("~")Scripts/General.js'></script>
+    <script src='@Url.Content("~")Scripts/Inicio.js'></script>
+</body>
+</html>
