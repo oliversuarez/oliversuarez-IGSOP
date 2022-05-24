@@ -937,9 +937,9 @@ var GUI = (function () {
                                                 }
                                                 html += "' ";
                                                 if (!nuevaFila) {
-                                                    html += "";
+                                                    html += "disabled";
                                                 }
-                                                html+="></select > ";
+                                                html+=" ></select > ";
                                                 break;
                                             case 'cbs':
                                                 html += "<div class='cbosearch";
@@ -966,9 +966,9 @@ var GUI = (function () {
                                                 html += "' data-campo='";
                                                 html += "'  ";
                                                 if (!nuevaFila) {
-                                                    html += "";
+                                                    html += "disabled";
                                                 }
-                                                html +="/>";
+                                                html +=" disabled/>";
                                                 html += "</div>";
                                                 html += "<div class='content_seacrh' style='display: none;'>";
                                                 html += " <input type='text' class='input_seacrh' placeholder='escriba aqui' />";
@@ -991,7 +991,7 @@ var GUI = (function () {
                                         html += id;
                                         html += "'  ";
                                         if (!nuevaFila) {
-                                            html += "";
+                                            html += "disabled";
                                         }
                                         html +="></select>";
                                     }
@@ -1064,6 +1064,62 @@ var GUI = (function () {
                                             if (esDecimal) html += matriz[i][j].toFixed(2);
                                             else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
                                             else html += matriz[i][j];
+                                            html += "'  ";
+                                            if (!nuevaFila) {
+                                                html += "disabled";
+                                            }
+                                            html += "/>";
+                                            break;
+                                        case "nro":
+                                            html += "<input type='number' style='width:100%' maxlength='";
+                                            html += listaMaxlenth[j];
+                                            html += "' class='valCharEsp Upper GE ";
+                                            if (!nuevaFila) {
+                                                html += " colorDisabled "
+                                            }
+                                            html += " Registro Input ";
+                                            html += id;
+                                            html += i;
+                                            html += "' data-row='";
+                                            html += i;
+                                            html += "' data-col='";
+                                            html += j;
+                                            html += "' data-val='";
+                                            if (esDecimal) html += matriz[i][j].toFixed(2);
+                                            else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
+                                            else html += html_escape(matriz[i][j]);
+                                            html += "' value='";
+                                            if (esDecimal) html += matriz[i][j].toFixed(2);
+                                            else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
+                                            else html += html_escape(matriz[i][j]);
+                                            html += "'  ";
+                                            if (!nuevaFila) {
+                                                html += "disabled";
+                                            }
+                                            html += "/>";
+                                            break;
+                                        case "fec":
+                                            html += "<input type='date' style='width:100%' maxlength='";
+                                            html += listaMaxlenth[j];
+                                            html += "' class='valCharEsp Upper GE ";
+                                            if (!nuevaFila) {
+                                                html += " colorDisabled "
+                                            }
+                                            html += " Registro Input ";
+                                            html += id;
+                                            html += i;
+                                            html += "' data-row='";
+                                            html += i;
+                                            html += "' data-col='";
+                                            html += j;
+                                            html += "' data-val='";
+                                            if (esDecimal) html += matriz[i][j].toFixed(2);
+                                            else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
+                                            else html += html_escape(matriz[i][j]);
+                                            html += "' value='";
+                                            if (esDecimal) html += matriz[i][j].toFixed(2);
+                                            else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
+                                            else html += html_escape(matriz[i][j]);
                                             html += "'  ";
                                             if (!nuevaFila) {
                                                 html += "disabled";
