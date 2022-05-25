@@ -273,6 +273,22 @@ var GUI = (function () {
             return spanText.innerHTML;
         }
 
+        inputhidden.SetValor = function (valor) {
+            var item;
+            for (var i = 0; i < nmatriz; i++) {
+                if (matriz[i][0] == valor) {
+                    item = matriz[i];
+                    break;
+                }
+            }
+            if (item != null) {
+                spanText.innerHTML = item[1];
+                inputhidden.value = item[0];
+                nombre = item[1];
+                input.value = "";
+            }
+        }
+
     }
 
     GUI.Grilla = function (div, lista, id, botones, mensajeRegistros, indices, ayudas, tieneCheck, subtotales, registrosPagina, paginasBloque,
@@ -1071,9 +1087,9 @@ var GUI = (function () {
                                             html += "/>";
                                             break;
                                         case "nro":
-                                            html += "<input type='number' style='width:100%' maxlength='";
+                                            html += "<input type='text' style='width:100%' maxlength='";
                                             html += listaMaxlenth[j];
-                                            html += "' class='valCharEsp Upper GE ";
+                                            html += "' class='valCharEsp Upper GE N ";
                                             if (!nuevaFila) {
                                                 html += " colorDisabled "
                                             }
@@ -1092,7 +1108,7 @@ var GUI = (function () {
                                             if (esDecimal) html += matriz[i][j].toFixed(2);
                                             else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
                                             else html += html_escape(matriz[i][j]);
-                                            html += "'  ";
+                                            html += "' ";
                                             if (!nuevaFila) {
                                                 html += "disabled";
                                             }
@@ -1115,11 +1131,11 @@ var GUI = (function () {
                                             html += "' data-val='";
                                             if (esDecimal) html += matriz[i][j].toFixed(2);
                                             else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
-                                            else html += html_escape(matriz[i][j]);
+                                            else html += matriz[i][j];
                                             html += "' value='";
                                             if (esDecimal) html += matriz[i][j].toFixed(2);
                                             else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
-                                            else html += html_escape(matriz[i][j]);
+                                            else html += matriz[i][j];
                                             html += "'  ";
                                             if (!nuevaFila) {
                                                 html += "disabled";
@@ -1143,11 +1159,11 @@ var GUI = (function () {
                                             html += "' data-val='";
                                             if (esDecimal) html += matriz[i][j].toFixed(2);
                                             else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
-                                            else html += html_escape(matriz[i][j]);
+                                            else html += matriz[i][j];
                                             html += "' value='";
                                             if (esDecimal) html += matriz[i][j].toFixed(2);
                                             else if (esFecha) html += mostrarFechaDMY(matriz[i][j]);
-                                            else html += html_escape(matriz[i][j]);
+                                            else html += matriz[i][j];
                                             html += "'  ";
                                             if (!nuevaFila) {
                                                 html += "disabled";
@@ -2774,10 +2790,12 @@ var Validacion = (function () {
        /* else span.innerHTML = "";*/
         return(c == 0);
     }
-    Validacion.ValidarNumeros = function (claseNum, span) {
+
+
+    Validacion.ValidarNumeros = function (claseNum, div) {
         if (claseNum == null) claseNum = "N";
-        if (span == null) span = spnMensaje
-        var controles = document.getElementsByClassName(claseNum);
+        if (div == null) div = document;
+        var controles = div.getElementsByClassName(claseNum);
         var nControles = controles.length;
         var c = 0;
         for (var i = 0; i < nControles; i++) {
@@ -2789,13 +2807,14 @@ var Validacion = (function () {
                 controles[i].style.borderColor = "";
             }
         }
-        if (c > 0) span.innerHTML = "Los campos en Borde Azul son Numeros";
-        else span.innerHTML = "";
+        if (c > 0) alerta([["Los campos en borde rojo son requeridos", "advertencia"]]);
         return (c == 0);
     }
-    Validacion.ValidarNumerosEnLinea = function (claseNum) {
+
+    Validacion.ValidarNumerosEnLinea = function (claseNum, div) {
+        if (div == null) div = document;
         if (claseNum == null) claseNum = "N";
-        var controles = document.getElementsByClassName(claseNum);
+        var controles = div.getElementsByClassName(claseNum);
         var nControles = controles.length;
         for (var i = 0; i < nControles; i++) {
             controles[i].onkeyup = function (event) {
@@ -2809,6 +2828,7 @@ var Validacion = (function () {
             }
         }
     }
+
     String.prototype.removeCharAt = function (i) {
         var tmp = this.split('');
         tmp.splice(i - 1, 1);

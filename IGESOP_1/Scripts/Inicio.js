@@ -2,16 +2,20 @@
 var Grilla;
 var ayuda = [];
 var tieneSubTotalExportar = "";
+var _tab;
 
 window.onload = function () {
-    Http.get("Postulante/cargar", mostrarRpt);
+    Http.get("Postulante/cargar", mostrarRpt);    
 }
 
 function mostrarRpt(rpta) {
     if (rpta) {
         lista = rpta.split(sepLista);
+        var preIndice;
         var listaPostulante = lista[0].split(sepRegistros);
-        var indices = Array.from(lista[1].split(','), Number);
+        preIndice = lista[1].split('~');
+        _tab = preIndice[1];
+        var indices = Array.from(preIndice[0].split(','), Number);
         var listaTipoDocum = lista[2].split(sepRegistros);
         var listaUniMinera = lista[3].split(sepRegistros);
         var listaEmpresas = lista[4].split(sepRegistros);
@@ -19,7 +23,7 @@ function mostrarRpt(rpta) {
         var listaPuestos = lista[6].split(sepRegistros);
         var listaEstados = lista[7].split(sepRegistros);
         var tipoIndice = ['hdn', 'cbo', 'nro', 'txt', 'fec', 'cbo', 'cbo', 'cbo', 'cbs', 'cbo'];
-        var listaMaxlenth = ['', '', '8', '200', '10', '', '', '', '', ''];
+        var listaMaxlenth = ['', '', '9', '200', '10', '', '', '', '', ''];
 
         ayuda.push(listaTipoDocum, listaUniMinera, listaEmpresas, listaAreas, listaPuestos, listaEstados);
 
@@ -28,22 +32,20 @@ function mostrarRpt(rpta) {
     }
 }
 
-
-function iniciarComboRegistro(idGrilla) {
-}
-function seleccionarFila() {
-}
-function iniciarComboSearchRegistro(idGrilla) {
-}
-function cambiarComboRegistro(idGrilla, combo, indiceCol, indiceRow, matriz) {
-}
 function nuevoRegistro() {
-    alert('nuevo');
+    var matriz = Grilla.ObtenerMatriz();
+    var regMatriz = matriz.length;
+    var fila = ['', '', '', '', '', '', '', '', '', ''];
+    matriz.push(fila);
+    Grilla.AgregarNuevo();
+    altert('NUEVO REGISTRO');
 }
 function editarRegistro(id, cod, fila) {
     var btnEdit = fila.childNodes[10].firstChild;
     var btnDelete = fila.childNodes[11].firstChild;
     var flagFila = fila.getAttribute("flag-accion");
+    var listaControles = fila.getElementsByClassName("GE");
+    Validacion.ValidarNumerosEnLinea("N", fila);
 
     if (flagFila == null || flagFila == "") {
         fila.setAttribute("flag-accion", "EDITAR");
@@ -51,30 +53,51 @@ function editarRegistro(id, cod, fila) {
         btnEdit.title = 'Guardar';
         btnDelete.src = hdfRaiz.value + "Images/return.svg";
         btnDelete.title = 'volver';
-        var listaControles = fila.getElementsByClassName("GE");
         habilitarControles(true, listaControles);
     }
     if (flagFila == "EDITAR") {
+        //NOTA: para quitar la clase requerido
+        var txtNombres = fila.childNodes[3].firstChild;
+        txtNombres.classList.remove("GE");
+
+
+        if (Validacion.ValidarRequeridos("GE", fila) == 0) return;
+        if (Validacion.ValidarNumeros("N", fila) == 0) return;
+
         fila.setAttribute("flag-accion", "");
         btnEdit.src = hdfRaiz.value + "Images/edit.svg";
         btnEdit.title = 'Editar';
         btnDelete.src = hdfRaiz.value + "Images/delete.svg";
         btnDelete.title = 'Eliminar';
+
         alert('SE GRABARON LOS DATOS EN CUESTION :');
-    }    
+        //NOTA: para devolverle la clase requerido
+        txtNombres.classList.add("GE");
+
+
+        habilitarControles(false, listaControles);
+    }
 }
 function eliminarRegistro(id, cod, fila) {
     var btnEdit = fila.childNodes[10].firstChild;
     var btnDelete = fila.childNodes[11].firstChild;
     var flagFila = fila.getAttribute("flag-accion");
+    var listaControles = fila.getElementsByClassName("GE");
 
     if (flagFila == "EDITAR") {
+        var nroCtl = listaControles.length;
+        var ctlData;
+        for (var i = 0; i < nroCtl; i++) {
+            ctlData = listaControles[i];
+            if (ctlData.type == "hidden")ctlData.SetValor(ctlData.getAttribute("data-val"));
+            else ctlData.value = ctlData.getAttribute("data-val");
+        }
+
         fila.setAttribute("flag-accion", "");
         btnEdit.src = hdfRaiz.value + "Images/edit.svg";
         btnEdit.title = 'Editar';
         btnDelete.src = hdfRaiz.value + "Images/delete.svg";
         btnDelete.title = 'Eliminar';
-        var listaControles = fila.getElementsByClassName("GE");
         habilitarControles(false, listaControles);
     }
     if (flagFila == null || flagFila == "") {
@@ -88,6 +111,21 @@ function habilitarControles(habilitado, lista) {
         !habilitado == false ? lista[i].classList.remove("colorDisabled") : lista[i].classList.add("colorDisabled");
     }
 }
+
+
+function iniciarComboRegistro(idGrilla) {
+}
+function seleccionarFila() {
+}
+function iniciarComboSearchRegistro(idGrilla) {
+}
+function pulsarBotonGrilla(idGrilla, input, indiceCol, indiceRow, matriz) {
+}
+function cambiarComboRegistro(idGrilla, combo, indiceCol, indiceRow, matriz) {
+}
+function cambiarInputRegistro(idGrilla, input, indiceCol, indiceRow, matriz) {
+}
+
 
 
 /*
@@ -108,6 +146,14 @@ deshabilitarBotonesGrilla(indiceFila);
 fila.childNodes[10].firstChild.style.pointerEvents = "none";
 btnNuevogrillaRegTiempo.style.pointerEvents = "auto";
 
-habilitarControles(true, lista);
+//if (ctlData.className.indexOf("InputcboSeacrh") > -1) && ctlData.tagName=="INPUT"
+
+*/
+
+/*
+NOTA: PARA REMOVER UN REQUERIDO
+=================================
+var txtTiempo = fila.childNodes[1].firstChild;
+txtTiempo.classList.remove("GE");
 */
 
