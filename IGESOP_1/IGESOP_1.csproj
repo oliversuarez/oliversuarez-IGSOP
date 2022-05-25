@@ -164,6 +164,7 @@
     <Content Include="Images\txt.svg" />
     <Content Include="Images\warning.svg" />
     <Content Include="Images\word.svg" />
+    <Content Include="Popud\postulante.txt" />
     <Content Include="Scripts\General.js" />
     <Content Include="Scripts\Inicio.js" />
     <Content Include="Styles\controles.css" />

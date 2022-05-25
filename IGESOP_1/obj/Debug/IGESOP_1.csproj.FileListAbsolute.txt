@@ -107,7 +107,6 @@ D:\CODIGO\IGESOP_1\IGESOP_1\bin\es\System.Web.Webpages.Deployment.resources.dll
 D:\CODIGO\IGESOP_1\IGESOP_1\bin\es\System.Web.Webpages.Razor.resources.dll
 D:\CODIGO\IGESOP_1\IGESOP_1\bin\es\System.Web.Helpers.resources.dll
 D:\CODIGO\IGESOP_1\IGESOP_1\bin\es\System.Web.Mvc.resources.dll
-D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.csproj.AssemblyReference.cache
 D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.csproj.CoreCompileInputs.cache
 D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.csproj.CopyComplete
 D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.dll

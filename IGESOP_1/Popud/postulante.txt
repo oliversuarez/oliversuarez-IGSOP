@@ -1,0 +1,8 @@
+﻿50|auto|I
+Cod. Postulante|hdfCodEmpresa|1|E K|CodEmpr|1
+Código Dato|txtCodigo|80|R E K|CodArea|4
+oliver|txtArea|450|R E|DesArea|100
+Tipo|cboTipo|150|C R E|TipArea|1
+Responsable|cbsResponsable|450|C R E|CodEmpl|6
+Estado|cboEstado|150|C R E D|EstReg|1
+Codigo Reporte|txtCodigoReporte|90|R E|CodAreaReporte|5

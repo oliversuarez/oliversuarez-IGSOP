@@ -10,8 +10,22 @@
     <div>
         <div id="grillaPostulante"></div>
     </div>
+    <div id="divPopupContainer" class="PopupContainer">
+        <div id="divPopupWindow" class="PopupWindow" style="height: 90% !important; top: 5%; width: 50%; left: 25%;">
+            <div id="divBarra" class="BarraTitulo">
+                <span id="fechaTitulo"></span>
+                <img id="btnCerrar" src="~/Images/delete_aspa.svg" class="IconoMedio" style="top:-30px;left:-30px;float:right" title="Cerrar Ventana" />
+            </div>
+            <div id="divPopup" class="Cuerpo">
+            </div>
+            <div class="divPopupAccion" style="border: 0px; background-color: whitesmoke ">
+                <input id="btnGrabar" type="button" class="grid_4" value="REGISTRAR POSTULANTE" />
+            </div>
+        </div>
+    </div>
     <input id="hdfRaiz" type="hidden" value='@Url.Content("~")' />
     <input id="hdfToken" type="hidden" value="@ViewBag.token" />
+    <input id="hdfPopud" type="hidden" value="@ViewBag.Popup" />
     <script src='@Url.Content("~")Scripts/General.js'></script>
     <script src='@Url.Content("~")Scripts/Inicio.js'></script>
 </body>

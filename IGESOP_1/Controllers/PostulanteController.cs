@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using io = System.IO;
 using General.Librerias.AccesoDatos;
 
 namespace IGESOP_1.Controllers
@@ -12,6 +9,11 @@ namespace IGESOP_1.Controllers
         // GET: Postulante
         public ActionResult Inicio()
         {
+            string archivoPopup = Server.MapPath("~/Popud/postulante.txt");
+            if (io.File.Exists(archivoPopup))
+            {
+                ViewBag.Popup = io.File.ReadAllText(archivoPopup);
+            }
             return View();
         }
 
