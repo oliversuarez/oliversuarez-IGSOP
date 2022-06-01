@@ -111,3 +111,5 @@ D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.csproj.CoreCompileInputs.cache
 D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.csproj.CopyComplete
 D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.dll
 D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.pdb
+D:\CODIGO\IGESOP_1\IGESOP_1\obj\Debug\IGESOP_1.csproj.AssemblyReference.cache
+D:\CODIGO\IGESOP_1\IGESOP_1\bin\General.Librerias.AccesoDatos.pdb

@@ -44,8 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="General.Librerias.AccesoDatos">
-      <HintPath>..\Librerias\General.Librerias.AccesoDatos.dll</HintPath>
+    <Reference Include="General.Librerias.AccesoDatos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\General.Librerias.AccesoDatosDesarrollo\bin\Debug\General.Librerias.AccesoDatos.dll</HintPath>
     </Reference>
     <Reference Include="General.Librerias.CodigoUsuario">
       <HintPath>..\Librerias\General.Librerias.CodigoUsuario.dll</HintPath>

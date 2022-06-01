@@ -21,7 +21,8 @@ namespace IGESOP_1.Controllers
         {
             string rpta = "";
             daSQL odaSQL = new daSQL("conIGESOP");
-            rpta = odaSQL.EjecutarComando("dbo.usp_PostulantesManteGenCsv_o");
+            //rpta = odaSQL.EjecutarComando("dbo.usp_PostulantesManteGenCsv_o");
+            rpta = odaSQL.EjecutarComando("dbo.usp_Prueba");
             return rpta;
         }
     }
